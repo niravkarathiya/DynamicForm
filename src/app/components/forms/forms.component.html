@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="card-container">
+    <mat-card class="example-card go-crazy" *ngFor="let form of forms">
+      <mat-card-header>
+        <mat-card-title>{{ form.formName }} Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-button (click)="formDetails(form.formId, form.formName)">
+          Edit
+        </button>
+        <button mat-button (click)="removeForm(form.formId)">
+          Remove
+        </button>
+        <button mat-button (click)="formPreview(form.formId)">Preview</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <button mat-fab class="mat-add-icon" [routerLink]="['/add-form']">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

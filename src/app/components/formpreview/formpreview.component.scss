@@ -1,0 +1,77 @@
+.container {
+  background-color: transparent;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_960_720.png");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+}
+
+.page {
+  width: 100%;
+  background-color: transparent;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  padding: 25px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  width: 50%;
+  h4 {
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 20px;
+  }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .no-questions {
+    display: block;
+    justify-content: center;
+    span {
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+      font-size: 20px;
+    }
+    .footer {
+      margin: 10px;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+  .mat-mdc-text-field-wrapper {
+    width: 100%;
+  }
+}
+
+.mat-add-icon {
+  position: absolute;
+  bottom: 40px;
+  right: 100px;
+  transition: 0.5s;
+  background-color: red;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0% {
+    bottom: 20px;
+    box-shadow: 5px 5px 20px rgb(93, 52, 168), -5px -5px 20px rgb(93, 52, 168);
+  }
+  25%,
+  75% {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 35px;
+    box-shadow: 5px 5px 20px rgb(81, 224, 210), -5px -5px 20px rgb(81, 224, 210);
+  }
+  100% {
+    bottom: 0;
+    box-shadow: 5px 5px 20px rgb(93, 52, 168), -5px -5px 20px rgb(93, 52, 168);
+  }
+}

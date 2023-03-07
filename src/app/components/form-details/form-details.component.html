@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="page">
+    <div class="form">
+      <h2>Add Questions</h2>
+
+      <form [formGroup]="dynamicForm" #formDir="ngForm">
+        <div class="form-container">
+          <mat-form-field appearance="outline">
+            <mat-label>Question</mat-label>
+            <input matInput type="text" formControlName="question" required />
+            <mat-error>Question is is required !</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type" (selectionChange)="onTypeSelect($event)">
+              <mat-option value="{{ type }}" *ngFor="let type of questionsType">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+            <mat-error>Type is required !</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Validations</mat-label>
+            <mat-select multiple formControlName="validations" (selectionChange)="onValidatoinSelect($event)">
+              <mat-select-trigger>
+                {{ dynamicForm.controls["validations"].value || "" }}
+                <span *ngIf="
+                    (dynamicForm.get('validations')?.value?.length || 0) > 1
+                  " class="example-additional-selection">
+                  (+{{
+                  (dynamicForm.get("validations")?.value?.length || 0) - 1
+                  }}
+                  {{
+                  dynamicForm.get("validations")?.value?.length === 2
+                  ? "other"
+                  : "others"
+                  }})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let validation of validations" [value]="validation">{{ validation }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="margin-half-bottom">
+          <button mat-raised-button class="btn-add-question" (click)="addQuestions()">
+            Add Question To Form
+          </button>
+        </div>
+
+        <div class="validation-container margin-half-top">
+          <mat-form-field appearance="outline" *ngIf="isMin">
+            <mat-label>Min</mat-label>
+            <input matInput type="text" formControlName="min" required />
+            <mat-error *ngIf="dynamicForm.get('min')?.hasError('required')">Min is required !</mat-error>
+            <mat-error *ngIf="dynamicForm.get('min')?.hasError('pattern')">Min must be number</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" *ngIf="isMax">
+            <mat-label>Max</mat-label>
+            <input matInput type="text" formControlName="max" required />
+            <mat-error *ngIf="dynamicForm.get('max')?.hasError('required')">Max is required !</mat-error>
+            <mat-error *ngIf="dynamicForm.get('max')?.hasError('pattern')">Max must be number !</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" *ngIf="isMinLength">
+            <mat-label>Min Length</mat-label>
+            <input matInput type="text" formControlName="minLength" required />
+            <mat-error *ngIf="dynamicForm.get('minLength')?.hasError('required')">Min Length is required !</mat-error>
+            <mat-error *ngIf="dynamicForm.get('minLength')?.hasError('pattern')">Min Length must be number !</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" *ngIf="isMaxLength">
+            <mat-label>Max Length</mat-label>
+            <input matInput type="text" formControlName="maxLength" required />
+            <mat-error *ngIf="dynamicForm.get('maxLength')?.hasError('required')">Max Length is required
+              !</mat-error>
+            <mat-error *ngIf="dynamicForm.get('maxLength')?.hasError('pattern')">Max Length must be number
+              !</mat-error>
+          </mat-form-field>
+        </div>
+
+        <ng-container
+          *ngIf="optionControlType === 'dropdown' || optionControlType === 'radio' || optionControlType ==='checkbox' || optionControlType ==='multi-select'">
+          <button mat-raised-button class="btn-add-option" (click)="addOptions()">
+            Add Option
+          </button>
+          <div class="option-container margin-half-top" formArrayName="optionControl">
+            <ng-container *ngFor="let control of optionControlArray.controls; let i = index">
+              <mat-form-field appearance="outline" [formGroupName]="i">
+                <input matInput type="text" formControlName="option" />
+                <mat-icon color="warn" matSuffix *ngIf="i > (dynamicForm.value.type === 'radio' ? 1 : 0)"
+                  (click)="removeOption(i)">
+                  delete
+                </mat-icon>
+                <mat-error>Option is required !</mat-error>
+              </mat-form-field>
+            </ng-container>
+          </div>
+        </ng-container>
+      </form>
+    </div>
+    <div class="question-list">
+      <div class="questions">
+        <div class="question margin-half-bottom" *ngFor="let que of questions; let i = index">
+          <div class="question-detail padding-around-10">
+            <span>{{ i + 1 }}.</span>
+            <span>{{ que.question }}</span>
+          </div>
+          <div class="actions padding-around-10">
+            <mat-icon (click)="editQuestion(que)">edit</mat-icon>
+            <mat-icon (click)="removeQuestion(i)">delete</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="no-questions" *ngIf="questions.length <= 0">
+        <span>No Questions Available !</span>
+      </div>
+    </div>
+  </div>
+  <button mat-fab class="mat-add-icon" [routerLink]="['/']">
+    <mat-icon>home</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,137 @@
+.container {
+  background-color: transparent;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_960_720.png");
+  background-size: cover;
+  height: 100vh;
+}
+
+.page {
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form {
+  padding: 25px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  width: 100%;
+}
+.footer {
+  justify-content: center;
+  text-align: center;
+  text-align: center;
+  border-radius: 20px;
+  width: 100%;
+  button {
+    background-color: #d2a286;
+  }
+}
+.form-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.option-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.question-list {
+  margin: 0 20px;
+  padding: 25px 45px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  width: 100%;
+  .no-questions {
+    display: flex;
+    justify-content: center;
+    span {
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+      font-size: 20px;
+    }
+  }
+}
+
+.questions {
+  max-height: 375px;
+  overflow-y: auto;
+}
+
+.question {
+  z-index: 1;
+  background-color: rgb(242 185 145 / 76%);
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.btn-add-question {
+  background-color: #d2a286 !important;
+  color: white !important;
+}
+.btn-add-option {
+  background-color: #702c54e3 !important;
+  color: white !important;
+}
+
+.margin-half-bottom {
+  margin-bottom: 0.5rem;
+}
+
+.margin-half-top {
+  margin-top: 0.5rem;
+}
+
+.padding-around-10 {
+  padding: 10px;
+}
+
+.flex-between-align-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.mat-add-icon {
+  position: absolute;
+  bottom: 40px;
+  right: 100px;
+  transition: 0.5s;
+  background-color: red;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0% {
+    bottom: 20px;
+    box-shadow: 5px 5px 20px rgb(93, 52, 168), -5px -5px 20px rgb(93, 52, 168);
+  }
+  25%,
+  75% {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 35px;
+    box-shadow: 5px 5px 20px rgb(81, 224, 210), -5px -5px 20px rgb(81, 224, 210);
+  }
+  100% {
+    bottom: 0;
+    box-shadow: 5px 5px 20px rgb(93, 52, 168), -5px -5px 20px rgb(93, 52, 168);
+  }
+}
