@@ -1,0 +1,61 @@
+.container {
+  background-color: transparent;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_960_720.png");
+  background-size: cover;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+mat-card {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease-in-out;
+  opacity: 0.8;
+  margin: 10px;
+  &:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+    color: #212121;
+    opacity: 1;
+  }
+}
+
+.go-crazy {
+  &:hover {
+    transform: translate(0, -3px) scale(101%) skewX(-3deg) rotate(1deg);
+  }
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.mat-add-icon {
+  position: absolute;
+  bottom: 40px;
+  right: 100px;
+  transition: 0.5s;
+  background-color: red;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0% {
+    bottom: 20px;
+    box-shadow: 5px 5px 20px rgb(93, 52, 168), -5px -5px 20px rgb(93, 52, 168);
+  }
+  25%,
+  75% {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 35px;
+    box-shadow: 5px 5px 20px rgb(81, 224, 210), -5px -5px 20px rgb(81, 224, 210);
+  }
+  100% {
+    bottom: 0;
+    box-shadow: 5px 5px 20px rgb(93, 52, 168), -5px -5px 20px rgb(93, 52, 168);
+  }
+}

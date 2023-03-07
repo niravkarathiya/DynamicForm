@@ -1,0 +1,33 @@
+.container {
+  background-color: transparent;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_960_720.png");
+  background-size: cover;
+  height: 100vh;
+}
+
+.page {
+  width: 100%;
+  padding: 2% 0 0;
+  margin: auto;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  max-width: 360px;
+  margin: 0 auto 30px;
+  padding: 45px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  height: 100%;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+.mat-mdc-form-field {
+  width: 100%;
+}

@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="page">
+        <form [formGroup]="form" class="form" #myfrm>
+            <h4>{{formData?.formName}} Form</h4>
+            <div class="form-container">
+                <div *ngFor="let fc of formData.questions;let i=index">
+                    <ng-container [ngSwitch]="fc.type">
+                        <ng-container *ngSwitchCase="'text'">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{fc.question}}</mat-label>
+                                <input matInput [formControlName]="fc.question+i" />
+                                <mat-error>Field is required !</mat-error>
+                                <mat-error *ngIf="form.get('fc.question+i')?.hasError('minlength')">
+                                    Min lenght <strong>8 char</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'textArea'">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{fc.question}}</mat-label>
+                                <textarea matInput [formControlName]="fc.question+i"></textarea>
+                                <mat-error>Field is required !</mat-error>
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'radio'">
+                            <mat-label>{{fc.question}}</mat-label>
+                            <mat-radio-group [formControlName]="fc.question+i">
+                                <mat-radio-button *ngFor="let option of fc.optionControl" [value]="option.option">
+                                    {{option.option}}
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'checkbox'">
+                            <mat-label>{{fc.question}}</mat-label>
+                            <mat-checkbox [formControlName]="fc.question+i" [checked]="option.option"
+                                (change)="checkToggle(option.option )" #checkbox="matCheckbox"
+                                *ngFor="let option of fc.optionControl">{{option.option}}</mat-checkbox>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'dropdown'">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{fc.question}}</mat-label>
+                                <mat-select [formControlName]="fc.question+i">
+                                    <mat-option *ngFor="let option of fc.optionControl;"
+                                        [value]="option.option">{{option.option}}</mat-option>
+                                </mat-select>
+                                <mat-error>Field is required !</mat-error>
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'number'">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{fc.question}}</mat-label>
+                                <input matInput [formControlName]="fc.question+i" />
+                                <mat-error>Field is required !</mat-error>
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'date'">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{fc.question}}</mat-label>
+                                <input matInput [matDatepicker]="picker" [formControlName]="fc.question+i">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error>Field is required !</mat-error>
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'multi-select'">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{fc.question}}</mat-label>
+                                <mat-select [formControlName]="fc.question+i" multiple>
+                                    <mat-option *ngFor="let option of fc.optionControl;"
+                                        [value]="option.option">{{option.option}}</mat-option>
+                                </mat-select>
+                                <mat-error>Field is required !</mat-error>
+                            </mat-form-field>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+            <button (click)="saveForm()" mat-raised-button *ngIf="formData.questions.length > 0">Submit</button>
+            <div class="no-questions" *ngIf="formData.questions.length <= 0">
+                <span>No Questions Available !</span>
+                <div class="footer">
+                    <button mat-raised-button routerLink="/form-details">Add Question</button>
+                </div>
+            </div>
+        </form>
+        <button mat-fab class="mat-add-icon" [routerLink]="['/']">
+            <mat-icon>home</mat-icon>
+        </button>
+    </div>
+</div>
