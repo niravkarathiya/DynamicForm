@@ -92,9 +92,14 @@ export class FormDetailsComponent implements OnInit {
           (q) => q.questionId === this.dynamicForm.value.questionId
         );
         this.questions[index] = this.dynamicForm.value;
+        this.formService.openSnackBar(
+          'Question Updated Successfully !',
+          'Close'
+        );
       } else {
         this.dynamicForm.controls['questionId'].setValue(uuidv4());
         this.questions.push(this.dynamicForm.value);
+        this.formService.openSnackBar('Question Added Successfully !', 'Close');
       }
       this.dynamicForm.reset();
 
@@ -112,6 +117,7 @@ export class FormDetailsComponent implements OnInit {
     this.questions.splice(index, 1);
     this.addToLocalStorage();
     this.dynamicForm.get('questions')?.reset();
+    this.formService.openSnackBar('Question Deleted Successfully !', 'Close');
   }
 
   onTypeSelect(event: any) {
@@ -133,6 +139,8 @@ export class FormDetailsComponent implements OnInit {
         this.optionControlType = event.value;
         this.optionControlArray.push(this.optionControlGroup());
         this.showHideValidation();
+        this.validations.push('min');
+        this.validations.push('max');
 
         break;
       case 'text':
@@ -160,6 +168,20 @@ export class FormDetailsComponent implements OnInit {
       : this.dynamicForm.patchValue({
           isRequired: false,
         });
+    this.checkValidationValue();
+  }
+
+  checkValidationValue() {
+    if (!this.isMax) this.setControlValue('max');
+    if (!this.isMin) this.setControlValue('min');
+    if (!this.isMaxLength) this.setControlValue('maxLength');
+    if (!this.isMinLength) this.setControlValue('minLenght');
+  }
+
+  setControlValue(control: any) {
+    this.dynamicForm.get(control)?.setValue(null);
+    this.dynamicForm.get(control)?.setValidators([]);
+    this.dynamicForm.get(control)?.updateValueAndValidity();
   }
 
   addOptions() {
