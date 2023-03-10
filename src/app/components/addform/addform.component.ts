@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormService } from 'src/app/services/form.service';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -10,11 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./addform.component.scss'],
 })
 export class AddformComponent {
-  constructor(
-    private fb: FormBuilder,
-    private route: Router,
-    private formService: FormService
-  ) {}
+  constructor(private fb: FormBuilder, private route: Router) {}
 
   isQuestionsVisible = false;
   name = 'Add';

@@ -25,5 +25,6 @@ export class FormsComponent implements OnInit {
   removeForm(index: number) {
     this.forms.splice(index, 1);
     this.formService.setItem('Forms', this.forms);
+    this.formService.openSnackBar('Form Removed Successfully!', 'Close');
   }
 }
